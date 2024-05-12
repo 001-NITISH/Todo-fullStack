@@ -1,6 +1,6 @@
 
 export function Heading({Label}:any){
-    return <div className="font-bold" text-4xl pt-6>
+    return <div className=" text-grey font-bold text-3xl pt-2" text-2xl  >
         {Label}
     </div>
 }

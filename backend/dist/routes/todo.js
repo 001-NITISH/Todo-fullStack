@@ -71,6 +71,24 @@ router.put('/update', (req, res) => __awaiter(void 0, void 0, void 0, function* 
         message: "Todo updated!"
     });
 }));
+router.post("/gettodo", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield prisma.todo.findMany({
+        where: {
+            userId: req.body.userId
+        },
+        select: {
+            title: true,
+            description: true,
+            done: true
+        }
+    });
+    if (result.length <= 0) {
+        return res.status(411).json({
+            message: "Todos not found"
+        });
+    }
+    return res.status(200).json(result);
+}));
 router.get("/get", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield prisma.todo.findMany({
         where: {

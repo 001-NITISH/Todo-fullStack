@@ -69,6 +69,25 @@ router.put('/update', async(req,res)=>{
     })
 })
 
+router.post("/gettodo", async(req,res) =>{
+    const result = await prisma.todo.findMany({
+        where:{
+            userId: req.body.userId
+        },
+        select:{
+            title: true,
+            description: true,
+            done: true
+        }
+    })
+    if(result.length <= 0){
+        return res.status(411).json({
+            message: "Todos not found"
+        })
+    }
+    return res.status(200).json(result) 
+})
+
 router.get("/get", async(req,res) =>{
     const result = await prisma.todo.findMany({
         where:{

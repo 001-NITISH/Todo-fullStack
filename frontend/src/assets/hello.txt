@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Appbar } from "../components/Appbar"
 import axios from "axios";
 import { Todos } from "../components/Todos";
@@ -10,23 +10,12 @@ export const Dashboard = ()=>{
     const[todo, setTodo]=useState("");
     const[description, setDescription]
     =useState("");
-    const userId = localStorage.getItem("id")
-    const[userdata, setUserdata]=useState("");
-    const id =userId?parseInt(userId,10):0
-    useEffect(()=>{
-        async function fetchData() {
-            const response = await axios.post("http://localhost:3000/api/v1/user/getuser", {
-                id
-            })
-            setUserdata(response.data.firstName)
-        }
-        fetchData()
-    },[id])
+    const userId = localStorage.getItem("userId", )
 
     return(
         <div className="h-screen bg-brown">
             <div className="pb-4">
-                <Appbar label={userdata}></Appbar>
+                <Appbar label={"N"}></Appbar>
             </div>
             <div className="pt-3 pb-4">
                 <div>
@@ -40,9 +29,9 @@ export const Dashboard = ()=>{
                 <div className="text-center pt-7">
                     <ButtonD onClick = {async()=>{
                         await axios.post("http://localhost:3000/api/v1/todo/add", {
-                            title:todo,
+                            todo,
                             description,
-                            userId:id
+                            userId
                         })
                     }} Label={"ADD"} /> 
                 </div>

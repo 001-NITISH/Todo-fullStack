@@ -26,6 +26,19 @@ const signinBody = zod_1.default.object({
     username: zod_1.default.string().email(),
     password: zod_1.default.string(),
 });
+router.post('/getuser', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield prisma.user.findUnique({
+        where: {
+            id: req.body.id
+        },
+        select: {
+            firstName: true
+        }
+    });
+    return res.status(200).json({
+        "firstName": result === null || result === void 0 ? void 0 : result.firstName
+    });
+}));
 router.post('/signup', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { success } = signupBody.safeParse(req.body);
     if (!success) {

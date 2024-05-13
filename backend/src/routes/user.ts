@@ -16,6 +16,19 @@ const signinBody = zod.object({
     
 })
 
+router.post('/getuser', async(req,res) =>{
+    const result = await prisma.user.findUnique({
+        where:{
+            id: req.body.id
+        },
+        select:{
+            firstName: true
+        }
+    })
+    return res.status(200).json({
+        "firstName": result?.firstName
+    })
+})
 
 router.post('/signup', async(req,res) => {
     const {success} = signupBody.safeParse(req.body);

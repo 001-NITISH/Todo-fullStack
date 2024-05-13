@@ -10,7 +10,8 @@ export default {
     extend: {
       backgroundImage: {
         "hero": "url('./src/assets/bg.jpg')",
-        "hero2": "url('./src/assets/coffee.jpg')"
+        "hero2": "url('./src/assets/coffee.jpg')",
+        "dashi":"url('./src/assets/dash.jpeg')"
       }
     },
     colors:{
@@ -23,9 +24,13 @@ export default {
       brown:{
         DEFAULT: '#E1DBCA',
         text: '#A87954',
+        button: '#bcaaa4'
       },
       grey:{
         DEFAULT: '#333333',
+      },
+      yellow:{
+        DEFAULT: '#f57f17',
       }
 
     }
